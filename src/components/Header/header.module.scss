@@ -1,0 +1,23 @@
+.root {
+  padding: 1rem 1.5rem;
+  background: #062a4e;
+  color: white;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 90rem;
+  margin: auto;
+}
+
+.logo {
+  &Container {
+    display: flex;
+    align-items: center;
+  }
+  &Title {
+    font-size: 1.3rem;
+    margin-left: 0.5rem;
+  }
+}

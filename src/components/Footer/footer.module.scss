@@ -1,0 +1,33 @@
+.root {
+  background-color: #062a4e;
+}
+
+.footerTop {
+  color: #767ead;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0rem 1.5rem;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.otherLinks {
+  justify-self: center;
+  > p {
+    font-weight: bold;
+    line-height: 1.3125rem;
+    margin-bottom: 24px;
+    cursor: pointer;
+  }
+}
+
+.copyright {
+  display: block;
+  color: white;
+  font-size: 0.875rem;
+  width: 100%;
+  text-align: center;
+  background-color: #06203a;
+  padding: 1.5625rem 0;
+}

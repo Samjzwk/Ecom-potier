@@ -1,0 +1,22 @@
+.searchInput {
+  position: absolute;
+  left: 50%;
+  top: 2.3rem;
+  transform: translateX(-50%);
+  transition: top 0.5s ease;
+}
+
+.searchIco {
+  cursor: pointer;
+}
+
+.input {
+  background-color: white;
+  border: 0.1875rem solid #767ead;
+  border-radius: 1rem;
+  width: 50vw;
+  height: 4rem;
+  color: #767ead;
+  padding: 0 2rem;
+  text-align: center;
+}

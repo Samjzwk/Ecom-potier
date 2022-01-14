@@ -1,0 +1,37 @@
+@import '../../styles/abstracts/mixins';
+
+.storeName {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 3.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.9375rem;
+  letter-spacing: 0.07em;
+}
+
+.links {
+  display: flex;
+}
+
+.listItem {
+  margin: 0 0.625rem;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.socialLink {
+  cursor: pointer;
+  svg {
+    background-color: #767ead;
+    border-radius: 50rem;
+    padding: 0.3rem;
+  }
+}
+
+.srOnly {
+  @include sr-only;
+}

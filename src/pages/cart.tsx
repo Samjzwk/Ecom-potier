@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import styles from '@/styles/pages/home.module.scss';
-import Book from '@/components/Card/Book';
+import styles from '@/styles/pages/cart.module.scss';
 
 export default function Home() {
   return (
@@ -14,15 +13,7 @@ export default function Home() {
         <link rel="icon" href="/potier.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Book
-          title="test"
-          price={35}
-          cover="test"
-          synopsis="test"
-          isbn="a460afed-e5e7-4e39-a39d-c885c05db861"
-        />
-      </main>
+      <main className={styles.main} />
     </div>
   );
 }
