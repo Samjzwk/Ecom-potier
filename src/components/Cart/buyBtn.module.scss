@@ -1,0 +1,35 @@
+.btn {
+  border-radius: 0.3125rem;
+  background-color: #062a4e;
+  color: white;
+  padding: 0.7rem;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.qtyContainer {
+  display: flex;
+  align-items: center;
+}
+
+.btnQty {
+  composes: btn;
+  border-radius: 0;
+}
+
+.qty {
+  width: 3rem;
+  text-align: center;
+  -moz-appearance: textfield;
+  background-color: #e4e7eb;
+  height: 2.5rem;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

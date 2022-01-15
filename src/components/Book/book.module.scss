@@ -48,7 +48,10 @@
   font-weight: 500;
 }
 
-.price {
+.buyContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
   margin-top: 1rem;
-  display: block;
 }

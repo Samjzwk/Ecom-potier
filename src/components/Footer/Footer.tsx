@@ -17,7 +17,7 @@ function Footer() {
       </div>
 
       <span className={Styles.copyright}>
-        Copyright © 2O22 Potier. Tous droits réservés
+        Copyright © 2O22 Potier. Tous droits réservés. Site de démonstration.
       </span>
     </footer>
   );

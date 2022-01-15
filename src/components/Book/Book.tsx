@@ -1,6 +1,7 @@
 import IBook from '@/types/book';
 import Image from 'next/image';
 import Styles from './book.module.scss';
+import BuyBtn from '../Cart/BuyBtn';
 
 function Book(props: IBook) {
   const { title, cover, price, synopsis } = props;
@@ -28,6 +29,7 @@ function Book(props: IBook) {
             currency: `EUR`,
           }).format(price)}
         </span>
+        <BuyBtn />
       </div>
     </div>
   );
