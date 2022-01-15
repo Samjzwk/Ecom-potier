@@ -1,9 +1,13 @@
 .container {
-  min-height: 50vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 69vh;
+  max-width: 80rem;
+  margin: auto;
+  padding: 3rem 0;
+}
+
+.listOfBooks {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 5rem 1rem;
+  justify-items: center;
 }
