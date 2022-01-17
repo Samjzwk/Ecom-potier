@@ -1,32 +1,37 @@
-import { useState, useRef } from 'react';
+import { useRef, FC, ChangeEvent } from 'react';
 import { Icon } from '@iconify/react';
 import Styles from './search.module.scss';
 
-function Search() {
-  const [isOpen, setOpen] = useState(false);
+interface ISearch {
+  triggerSearch: (args0: string) => void;
+}
+
+const Search: FC<ISearch> = ({ triggerSearch }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleClick = () => {
-    setOpen((prevState) => !prevState);
-    if (inputRef.current) inputRef.current.focus();
+  const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    triggerSearch(e.target.value);
   };
 
   return (
     <>
-      {isOpen && (
-        <div className={Styles.searchInput}>
-          <input type="text" className={Styles.input} ref={inputRef} />
-        </div>
-      )}
-      <Icon
-        icon="fluent:book-search-20-filled"
-        color="white"
-        height="34"
-        onClick={handleClick}
-        className={Styles.searchIco}
-      />
+      <div className={Styles.searchInput}>
+        <input
+          type="text"
+          className={Styles.input}
+          ref={inputRef}
+          placeholder="Rechercher un livre"
+          onChange={handleInputSearch}
+        />
+        <Icon
+          icon="fluent:book-search-20-filled"
+          color="white"
+          height="40"
+          className={Styles.searchIco}
+        />
+      </div>
     </>
   );
-}
+};
 
 export default Search;

@@ -1,9 +1,3 @@
-@import '../../styles/abstracts/mixins';
-
 .root {
   display: flex;
-}
-
-.srOnly {
-  @include sr-only;
 }

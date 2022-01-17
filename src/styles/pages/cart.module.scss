@@ -1,0 +1,51 @@
+@import '../abstracts/mixins';
+
+.main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  @include breakpoint(min-width, 40.3125rem) {
+    display: flex;
+  }
+}
+
+.recap {
+  width: 100%;
+  @include breakpoint(min-width, 40.3125rem) {
+    width: 55%;
+  }
+}
+
+.detailledPrice {
+  align-self: baseline;
+  background-color: #e4e7eb;
+  padding: 1rem;
+  display: grid;
+  grid-auto-rows: 2.5rem;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  border-radius: 0.3125rem;
+
+  @include breakpoint(min-width, 40.3125rem) {
+    position: absolute;
+    right: 1rem;
+    width: 35%;
+  }
+
+  > span:nth-child(odd) {
+    font-weight: 700;
+  }
+
+  > span:nth-child(even) {
+    text-align: right;
+  }
+
+  .totalValue,
+  .totalPrice {
+    font-size: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid black;
+  }
+}

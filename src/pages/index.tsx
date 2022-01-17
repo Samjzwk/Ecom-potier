@@ -1,14 +1,19 @@
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { InferGetStaticPropsType, NextPage } from 'next';
 import axios from 'axios';
 import Head from 'next/head';
 import Styles from '@/styles/pages/home.module.scss';
+import Search from '@/components/Search/Search';
 import IBook from '@/types/book';
 import Book from '@/components/Book/Book';
+import useSearch from '@/packages/Hooks/useSearch';
+import Image from 'next/image';
 
-export default function Home({
+const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   books,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const retrieveBooks = books.map((book: IBook) => (
+}) => {
+  const { renderedBooks, triggerSearch } = useSearch(books);
+
+  const retrieveBooks = renderedBooks.map((book: IBook) => (
     <li className={Styles.items} key={book.isbn}>
       <Book
         title={book.title}
@@ -24,7 +29,15 @@ export default function Home({
     retrieveBooks.length > 0 ? (
       retrieveBooks
     ) : (
-      <li>{`il n'y a plus de livres :'( `}</li>
+      <li className={Styles.missingBooks}>
+        <Image
+          src="/missingBooks.svg"
+          width={400}
+          height={374}
+          alt="Livres non trouvés"
+        />
+        <p>Les livres se font la malle !</p>
+      </li>
     );
 
   return (
@@ -39,20 +52,29 @@ export default function Home({
       </Head>
 
       <main className={Styles.main}>
+        <Search triggerSearch={triggerSearch} />
         <ul className={Styles.listOfBooks}>{renderProductPage}</ul>
       </main>
     </div>
   );
-}
+};
 
-export const getStaticProps: GetStaticProps = async () => {
-  const result = await axios.get(`https://henri-potier.techx.fr/books`);
-  const books = result.data;
-
+export const getStaticProps = async () => {
+  let books: IBook[] | [];
+  try {
+    const result = await axios.get<IBook[]>(
+      `https://henri-potier.techx.fr/books`,
+    );
+    books = result.data;
+  } catch {
+    books = [];
+  }
   return {
     props: {
       books,
     },
-    // revalidate: 20, @TODO: remove when finished
+    revalidate: 60,
   };
 };
+
+export default Home;

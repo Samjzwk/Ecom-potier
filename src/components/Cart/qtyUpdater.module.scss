@@ -1,0 +1,22 @@
+.qtyContainer {
+  display: flex;
+  align-items: center;
+}
+
+.btnQty {
+  composes: btn from './buyBtn.module.scss';
+  border-radius: 0;
+}
+
+.qty {
+  width: 3rem;
+  text-align: center;
+  -moz-appearance: textfield;
+  background-color: #e4e7eb;
+  height: 2.5rem;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
