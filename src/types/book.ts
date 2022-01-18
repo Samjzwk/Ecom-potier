@@ -3,5 +3,5 @@ export default interface IBook {
   cover: string;
   price: number;
   isbn: string;
-  synopsis: string;
+  synopsis: string | string[];
 }
