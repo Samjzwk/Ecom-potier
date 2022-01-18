@@ -22,6 +22,7 @@ const Search: FC<ISearch> = ({ triggerSearch }) => {
           ref={inputRef}
           placeholder="Rechercher un livre"
           onChange={handleInputSearch}
+          name="searchbar"
         />
         <Icon
           icon="fluent:book-search-20-filled"

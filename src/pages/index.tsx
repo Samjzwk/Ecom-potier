@@ -53,7 +53,13 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
       <main className={Styles.main}>
         <Search triggerSearch={triggerSearch} />
-        <ul className={Styles.listOfBooks}>{renderProductPage}</ul>
+        <ul
+          aria-label="livres"
+          data-testid="bookList"
+          className={Styles.listOfBooks}
+        >
+          {renderProductPage}
+        </ul>
       </main>
     </div>
   );
