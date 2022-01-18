@@ -8,6 +8,8 @@ import CartContext from '@/packages/Context/cartContext';
 import useCart from '@/packages/Hooks/useCart';
 import CartItem from '@/components/CartItem/CartItem';
 import { IDiscount, IOffer } from '@/types/discount';
+import DetailledPrice from '@/components/DetailledPrice/DetailledPrice';
+import NotFound from '@/components/NotFound/NotFound';
 
 const Cart: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -31,19 +33,21 @@ const Cart: NextPage<
   }, [cart, isbns]);
 
   useEffect(() => {
-    const retrieveDiscounts = async () => {
-      try {
-        const result = await axios.get<IDiscount>(
-          `https://henri-potier.techx.fr/books/${isbns.join(
-            `,`,
-          )}/commercialOffers`,
-        );
-        setOffers(result.data.offers);
-      } catch {
-        throw new Error(`Can't fetch commercialOffers`);
-      }
-    };
-    if (isbns.length > 0) retrieveDiscounts();
+    if (Object.entries(cart).length !== 0 && books.length !== 0) {
+      const retrieveDiscounts = async () => {
+        try {
+          const result = await axios.get<IDiscount>(
+            `https://henri-potier.techx.fr/books/${isbns.join(
+              `,`,
+            )}/commercialOffers`,
+          );
+          setOffers(result.data.offers);
+        } catch {
+          throw new Error(`Can't fetch commercialOffers`);
+        }
+      };
+      if (isbns.length > 0) retrieveDiscounts();
+    }
   }, [isbns]);
 
   const discount = useCallback(() => {
@@ -73,32 +77,18 @@ const Cart: NextPage<
       </Head>
 
       <main className={Styles.main}>
-        <div className={Styles.recap}>
-          <ul>{retrieveCartItem}</ul>
-        </div>
-        <div className={Styles.detailledPrice}>
-          <span>Prix du panier:</span>
-          <span>
-            {new Intl.NumberFormat(`fr-FR`, {
-              style: `currency`,
-              currency: `EUR`,
-            }).format(fullPriceCart)}
-          </span>
-          <span>Discount: </span>
-          <span>
-            {new Intl.NumberFormat(`fr-FR`, {
-              style: `currency`,
-              currency: `EUR`,
-            }).format(discount())}
-          </span>
-          <span className={Styles.totalPrice}>Prix Total: </span>
-          <span className={Styles.totalValue}>
-            {new Intl.NumberFormat(`fr-FR`, {
-              style: `currency`,
-              currency: `EUR`,
-            }).format(fullPriceCart - discount())}
-          </span>
-        </div>
+        {Object.entries(cart).length === 0 || books.length === 0 ? (
+          <div className={Styles.emptyCart}>
+            <NotFound text="Votre panier est vide !" />
+          </div>
+        ) : (
+          <>
+            <div className={Styles.recap}>
+              <ul>{retrieveCartItem}</ul>
+            </div>
+            <DetailledPrice fullPriceCart={fullPriceCart} discount={discount} />
+          </>
+        )}
       </main>
     </div>
   );

@@ -19,7 +19,9 @@
     "postinstall": "husky install",
     "commit": "cz",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -52,6 +54,7 @@
     "@typescript-eslint/parser": "5.9.1",
     "babel-jest": "27.4.5",
     "commitizen": "^4.2.4",
+    "cypress": "^9.2.1",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "^8.6.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -66,6 +69,7 @@
     "husky": "7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "27.4.5",
+    "jest-mock-axios": "^4.5.0",
     "lint-staged": "12.1.7",
     "next-page-tester": "^0.30.0",
     "node-mocks-http": "^1.11.0",

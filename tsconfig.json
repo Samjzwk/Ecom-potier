@@ -21,5 +21,13 @@
     "incremental": true
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.setup.js"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "jest.setup.js",
+    "src/packages/__mocks__/sessionStorageSetup.js",
+    "src/components/Cart/__test__/miniCart.test.tsx",
+    "cypress/integration/app.spec.js"
+  ]
 }

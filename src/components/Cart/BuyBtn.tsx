@@ -5,21 +5,15 @@ import QtyUpdater from './QtyUpdater';
 
 interface IBuyBtn {
   isbn: string;
-  initialQty?: number;
 }
 
 const BuyBtn: FC<IBuyBtn> = ({ isbn }) => {
-  const { addToCart, isPresent, increment, decrement, retrieveQty } =
-    useAddToCart(isbn);
+  const { addToCart, isPresent } = useAddToCart(isbn);
 
   return (
     <>
       {isPresent(isbn) ? (
-        <QtyUpdater
-          increment={increment}
-          decrement={decrement}
-          qty={retrieveQty()}
-        />
+        <QtyUpdater isbn={isbn} />
       ) : (
         <button type="button" className={Styles.btn} onClick={addToCart}>
           Ajouter au panier

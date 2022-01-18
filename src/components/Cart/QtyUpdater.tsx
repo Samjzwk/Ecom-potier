@@ -1,23 +1,25 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
+import useAddToCart from '../../packages/Hooks/useAddToCart';
 import Styles from './qtyUpdater.module.scss';
 
 interface IQtyUpdater {
-  increment: () => void;
-  decrement: () => void;
-  qty: number;
+  isbn: string;
 }
 
-const QtyUpdater: FC<IQtyUpdater> = ({ increment, decrement, qty }) => {
-  const [qtyValue, setQtyValue] = useState(qty);
+const QtyUpdater: FC<IQtyUpdater> = ({ isbn }) => {
+  const { increment, decrement, retrieveQty } = useAddToCart(isbn);
+  const [qtyValue, setQtyValue] = useState(retrieveQty()); // useState to avoid the uncontrolled error when remove
+
+  useEffect(() => {
+    setQtyValue(retrieveQty());
+  }, [retrieveQty]);
 
   const handleIncrement = () => {
     increment();
-    setQtyValue((prev) => prev + 1); // avoid the uncontrolled input
   };
 
   const handleDecrement = () => {
     decrement();
-    setQtyValue((prev) => prev - 1); // avoid the uncontrolled input
   };
 
   return (

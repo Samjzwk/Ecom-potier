@@ -11,20 +11,24 @@ const useCart = (isbns: string[], cart: ICartItem, books: IBook[]) => {
     0,
   );
 
-  const discountCart = (offers: IOffer[], totalPrice: number) =>
-    offers.reduce<number>((prev, curr) => {
-      // prev < curr.value ? curr.value : prev)
-      if (prev < curr.value) {
-        if (curr.type === `slice`) {
-          if (curr.sliceValue !== undefined && curr.sliceValue < totalPrice) {
-            return curr.value;
-          }
-          return prev;
-        }
-        return curr.value;
+  const discountCart = (offers: IOffer[], totalPrice: number) => {
+    const resultFromOffers: number[] = offers.map((offer) => {
+      switch (offer.type) {
+        case `percentage`:
+          return totalPrice * (offer.value / 100);
+        case `minus`:
+          return offer.value;
+        case `slice`:
+          return offer.sliceValue && totalPrice >= offer.sliceValue
+            ? Math.floor(totalPrice / offer.sliceValue) * offer.value
+            : 0;
+        default:
+          return 0;
       }
-      return prev;
-    }, 0);
+    });
+
+    return resultFromOffers.length === 0 ? 0 : Math.max(...resultFromOffers);
+  };
 
   return {
     retrieveBooks,

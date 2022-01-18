@@ -7,7 +7,7 @@ import Styles from './cartItem.module.scss';
 import QtyUpdater from '../Cart/QtyUpdater';
 
 const CartItem: FC<IBook> = ({ title, cover, price, isbn }) => {
-  const { increment, decrement, retrieveQty, remove } = useAddToCart(isbn);
+  const { remove } = useAddToCart(isbn);
 
   return (
     <li className={Styles.itemContainer}>
@@ -32,11 +32,7 @@ const CartItem: FC<IBook> = ({ title, cover, price, isbn }) => {
           </span>
         </div>
         <div className={Styles.actions}>
-          <QtyUpdater
-            increment={increment}
-            decrement={decrement}
-            qty={retrieveQty()}
-          />
+          <QtyUpdater isbn={isbn} />
           <button className={Styles.delete} type="button" onClick={remove}>
             <span className={Styles.srOnly}>Supprimer du panier</span>
             <Icon icon="bi:trash-fill" color="#062a4e" height={24} />

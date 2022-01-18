@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-types */
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import Home from '@/pages/index';
@@ -5,20 +6,15 @@ import { CartProvider } from '@/packages/Context/cartContext';
 import { mockedBooks } from '@/packages/__mocks__/mocks';
 
 describe(`Home`, () => {
-  const customRender = (
-    ui: {} | null | undefined,
-    {
-      providerProps,
-      ...renderOptions
-    }: { providerProps: { isPresent: boolean } },
-  ) =>
-    render(<CartProvider {...providerProps}>{ui}</CartProvider>, renderOptions);
+  const renderWithContext = (component: any, propsProvider: {}) => ({
+    ...render(<CartProvider>{component}</CartProvider>),
+  });
 
   it(`>>>> it renders list of books`, () => {
     const providerProps = {
-      isPresent: false,
+      isPresent: () => false,
     };
-    customRender(<Home books={mockedBooks} />, { providerProps });
+    renderWithContext(<Home books={mockedBooks} />, providerProps);
 
     mockedBooks.forEach((mock) => {
       expect(screen.getByText(mock.title)).toBeInTheDocument();
@@ -34,9 +30,9 @@ describe(`Home`, () => {
 
   it(`>>>> it change list of books according to the search`, () => {
     const providerProps = {
-      isPresent: false,
+      isPresent: () => false,
     };
-    customRender(<Home books={mockedBooks} />, { providerProps });
+    renderWithContext(<Home books={mockedBooks} />, providerProps);
 
     const searchInput = screen.getByPlaceholderText(`Rechercher un livre`);
     fireEvent.change(searchInput, { target: { value: `Cham` } });
@@ -57,9 +53,9 @@ describe(`Home`, () => {
 
   it(`>>>> it change list of books according to the search but find nothing`, () => {
     const providerProps = {
-      isPresent: false,
+      isPresent: () => false,
     };
-    customRender(<Home books={mockedBooks} />, { providerProps });
+    renderWithContext(<Home books={mockedBooks} />, providerProps);
 
     const searchInput = screen.getByPlaceholderText(`Rechercher un livre`);
     fireEvent.change(searchInput, { target: { value: `azer` } });

@@ -2,7 +2,7 @@ import { useContext, useCallback } from 'react';
 import ICartItem from '@/types/cart';
 import CartContext from '../Context/cartContext';
 
-const useCart = (isbn: string) => {
+const useAddToCart = (isbn: string) => {
   const { cart, updateCart, isPresent } = useContext(CartContext);
 
   const addToCart = () => {
@@ -42,4 +42,4 @@ const useCart = (isbn: string) => {
   };
 };
 
-export default useCart;
+export default useAddToCart;

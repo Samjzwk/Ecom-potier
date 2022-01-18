@@ -6,7 +6,7 @@ import Search from '@/components/Search/Search';
 import IBook from '@/types/book';
 import Book from '@/components/Book/Book';
 import useSearch from '@/packages/Hooks/useSearch';
-import Image from 'next/image';
+import NotFound from '@/components/NotFound/NotFound';
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   books,
@@ -30,13 +30,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       retrieveBooks
     ) : (
       <li className={Styles.missingBooks}>
-        <Image
-          src="/missingBooks.svg"
-          width={400}
-          height={374}
-          alt="Livres non trouvés"
-        />
-        <p>Les livres se font la malle !</p>
+        <NotFound text="Les livres se font la malle !" />
       </li>
     );
 
