@@ -7,7 +7,7 @@
 
 .searchIco {
   cursor: pointer;
-  background-color: #062a4e;
+  background-color: var(--primary);
   position: absolute;
   right: 0rem;
   top: 0;
@@ -17,12 +17,12 @@
 }
 
 .input {
-  background-color: white;
-  border: 0.1875rem solid #767ead;
+  background-color: var(--secondary);
+  border: 0.1875rem solid var(--lightPrimary);
   border-radius: 1rem;
   width: 100%;
   height: 3rem;
-  color: #767ead;
+  color: var(--lightPrimary);
   padding: 0 2rem;
   text-align: center;
 }

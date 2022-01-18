@@ -1,12 +1,12 @@
 .root {
-  background-color: #062a4e;
+  background-color: var(--primary);
   position: absolute;
   bottom: 0;
   width: 100%;
 }
 
 .footerTop {
-  color: #767ead;
+  color: var(--lightPrimary);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0rem 1.5rem;
@@ -27,7 +27,7 @@
 
 .copyright {
   display: block;
-  color: white;
+  color: var(--secondary);
   font-size: 0.875rem;
   width: 100%;
   text-align: center;

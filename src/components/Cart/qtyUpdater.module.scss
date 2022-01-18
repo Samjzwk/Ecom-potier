@@ -12,7 +12,7 @@
   width: 3rem;
   text-align: center;
   -moz-appearance: textfield;
-  background-color: #e4e7eb;
+  background-color: var(--darkerSecondary);
   height: 2.5rem;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

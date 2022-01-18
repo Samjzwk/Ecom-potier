@@ -37,9 +37,9 @@
 
 .verso {
   transform: rotateY(180deg);
-  background-color: #062a4e;
+  background-color: var(--primary);
   overflow: auto;
-  color: white;
+  color: var(--secondary);
   padding: 1rem;
 }
 
